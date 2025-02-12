@@ -8,6 +8,9 @@ const server = http.createServer();
 const wsServer = new WebSocketServer({server});
 const port = 8080;
 
+const connections = {}
+const users = {}
+
 wsServer.on("connection", (connection, request) => {
     // ws://localhost:8080?username=Alex
 
@@ -15,6 +18,15 @@ wsServer.on("connection", (connection, request) => {
     const uuid = uuidv4()
     console.log(username);
     console.log(uuid);
+
+    connections[uuid] = connection;
+    users[uuid] = {
+        username: username,
+        state: { }
+    };
+
+    connection.on("message", (message) => handleMessage(message, uuid));
+    connection.on("close", () => handleClose(uuid));
 })
 
 server.listen(port, () => {
