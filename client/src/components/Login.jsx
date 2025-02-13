@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export function Login() {
+export function Login({ onSubmit }) {
     const [username, setUsername] = useState("");
     return (
         <>
@@ -16,9 +16,7 @@ export function Login() {
                     type="text"
                     value={username}
                     placeholder="username"
-                    onChange={(e) => {
-                        e.target.value
-                    }}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <input type="submit"/>
             </form>
