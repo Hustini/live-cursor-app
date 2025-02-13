@@ -27,11 +27,14 @@ const handleMessage = (bytes, uuid) => {
 
     broadcastUsers()
 
-    console.log(message)
+    console.log(`${user.username} has updated the state: ${JSON.stringify(user.state)}`)
 }
 
 const handleClose = (uuid) => {
+    delete connections[uuid];
+    delete users[uuid];
 
+    broadcastUsers()
 }
 
 wsServer.on("connection", (connection, request) => {
