@@ -1,5 +1,5 @@
 import * as React from "react"
-import { usePerfectCursor } from "../hooks/usePerfectCursor"
+import { usePerfectCursor } from "../hooks/useCursor"
 
 export function Cursor({ userId, point }) {
     const rCursor = React.useRef(null)
