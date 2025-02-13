@@ -1,10 +1,15 @@
-import { useState } from 'react'
-import { Login } from './components/Login';
+import {useState} from 'react'
+import {Login} from './components/Login';
+import {Home} from './Home';
 
 function App() {
-  return (
-      <Login/>
-  )
+    const [username, setUsername] = useState('');
+
+    return username ? (
+        <Home username={username} />
+    ) : (
+        <Login onSubmit={setUsername}/>
+    )
 }
 
 export default App
