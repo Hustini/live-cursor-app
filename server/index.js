@@ -11,6 +11,22 @@ const port = 8080;
 const connections = {}
 const users = {}
 
+const broadcast = () => {
+
+}
+
+const handleMessage = (bytes, uuid) => {
+    // message = {"x": 0, "y": 0}
+    const message  = JSON.parse(bytes.toString())
+    const user = users[uuid];
+    user.state = message
+    console.log(message)
+}
+
+const handleClose = (uuid) => {
+
+}
+
 wsServer.on("connection", (connection, request) => {
     // ws://localhost:8080?username=Alex
 
